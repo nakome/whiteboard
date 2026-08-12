@@ -1,3 +1,27 @@
+/**
+ * Compact shortcode catalog for AI prompts (ask / generate).
+ * Keep in sync with `templates` and handlers in shortcodes.js.
+ */
+export const SHORTCODE_AI_GUIDE = [
+  'El content de cada card admite Markdown y shortcodes (estilo BBCode).',
+  'Sintaxis: [Tag attr=valor]cuerpo[/Tag] o inline [Tag attr=valor]. Atributos con espacios van entre comillas.',
+  'Incluye shortcodes cuando aporten estructura visual; no satures todas las cards.',
+  'Catálogo:',
+  "- Note: [Note name=success|warning|info|danger]texto[/Note]",
+  "- Color: [Color name='#f55'|orange]**texto**[/Color]",
+  "- SmartQuote: [SmartQuote prompt='tema' tone='inspirador' lang='es']",
+  "- Code: [Code title='Demo' lang='js' open=false]\\ncodigo\\n[/Code]",
+  "- Tabs: [Tabs active=0][Tab name='A']...[/Tab][Tab name='B']...[/Tab][/Tabs]",
+  "- Checklist: [Checklist title='Sprint']\\n- [x] Hecho\\n- [ ] Pendiente\\n[/Checklist]",
+  "- Timeline: [Timeline title='Plan']\\nYYYY-MM-DD | Titulo | Desc | done|in_progress|planned|blocked\\n[/Timeline]",
+  "- KPIGrid: [KPIGrid]\\nTitulo | valor | tendencia | success|info|warning|neutral\\n[/KPIGrid]",
+  "- Changelog: [Changelog title='Notes']\\nv1.0 | fecha | cambio | added|fixed|changed\\n[/Changelog]",
+  "- Matrix: [Matrix title='Prioridad']\\nquick_wins|major_projects|fill_ins|thankless_tasks | texto\\n[/Matrix]",
+  "- Layout: [Columns num=2|3]...[/Columns], [Justify|Center|Right]...[/Justify|Center|Right], [Divider num=1]",
+  "- Boxes: [Boxes][Box num=3]...[/Box][/Boxes]",
+  "- Media: [Youtube id='...'], [Video src='...' controls=true], [Audio src='...'], [Iframe src='...' width='480' height='320']",
+].join('\n')
+
 export const templates = [{
     text: '✅ Note success',
     title: 'Shortcode: Note',

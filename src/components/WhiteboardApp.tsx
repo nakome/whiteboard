@@ -15,7 +15,7 @@ import {
 } from '@/lib/whiteboard/boards-api'
 import type { Board, BoardContent } from '@/lib/whiteboard/types'
 import { createMarkdownToHtml } from '@/lib/whiteboard/markdown'
-import { templates as shortcodeTemplates } from '@/lib/whiteboard/shortcodeTemplates'
+import { SHORTCODE_AI_GUIDE, templates as shortcodeTemplates } from '@/lib/whiteboard/shortcodeTemplates'
 import { registerWhiteboardComponents } from '@/lib/whiteboard/componentes/index.js'
 import { initWhiteboard } from '@/lib/whiteboard/engine.js'
 import { isPuterReady, loadPuter, puterChat, puterTxt2Img } from '@/lib/puter'
@@ -358,6 +358,8 @@ export default function WhiteboardApp({ userId, userEmail }: Props) {
         const instruction = [
           'Responde en español usando markdown claro y breve.',
           'No devuelvas JSON, solo la respuesta en texto markdown.',
+          'Si aporta claridad, usa shortcodes del whiteboard en la respuesta.',
+          SHORTCODE_AI_GUIDE,
           `Pregunta: ${prompt}`,
         ].join('\n')
         const answer = await puterChat(instruction)
@@ -374,7 +376,10 @@ export default function WhiteboardApp({ userId, userEmail }: Props) {
           'Genera únicamente JSON válido para un whiteboard.',
           'Esquema exacto:',
           '{"cards":[{"title":"string","content":"markdown","x":120,"y":90,"width":260,"height":160}],"arrows":[{"from":0,"to":1}]}',
-          'No incluyas texto adicional, ni markdown, ni explicación.',
+          'El campo content de cada card es markdown y puede incluir shortcodes del whiteboard.',
+          'Usa shortcodes cuando encajen (checklist, timeline, notes, tabs, KPI, etc.); no en todas las cards.',
+          SHORTCODE_AI_GUIDE,
+          'No incluyas texto adicional, ni markdown fuera del JSON, ni explicación.',
           `Tema: ${prompt}`,
         ].join('\n')
         const raw = await puterChat(instruction)
